@@ -9,6 +9,8 @@ import fr.jeromelesaux.app.ardrone.graphic.Graphic;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.List;
 
@@ -60,9 +62,21 @@ public class Main {
             collection.addCsvElementValue(speedValue);
         }
 
+        Double distance = null;
+        try {
+            distance = Compute.computeDistance(collection);
+        } catch (ParseException e) {
+            LOG.error(e.getMessage());
+        }
+
         try {
             String graphicFilepath = filepath.substring(0,filepath.lastIndexOf(".")) + ".png";
-            Graphic.generateGraph(collection,graphicFilepath);
+            String titleToAppend = "";
+            if (distance!=null) {
+                NumberFormat numberFormat = new DecimalFormat("#0.00");
+                titleToAppend = " distance range " + numberFormat.format(distance) + " meters.";
+            }
+            Graphic.generateGraph(collection, graphicFilepath, titleToAppend);
         } catch (IOException e) {
             LOG.error("Can't generate grahic.");
         } catch (ParseException e) {

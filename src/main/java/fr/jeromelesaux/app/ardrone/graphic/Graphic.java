@@ -32,7 +32,8 @@ import java.util.List;
  */
 public class Graphic {
     private static final Logger LOG = Logger.getLogger(Graphic.class.getName());
-    public static void generateGraph(CsvElementCollection collection, String graphFilepath) throws IOException, ParseException {
+    public static void generateGraph(CsvElementCollection collection, String graphFilepath, String titleToAppend)
+            throws IOException, ParseException {
         LOG.trace("Generate graphic");
         Calendar flyDate;
         String title = "Ar drone vol fly ";
@@ -76,7 +77,7 @@ public class Graphic {
         dataset.addSeries(altitudeSeries);
 
 
-        final JFreeChart chart =  ChartFactory.createXYLineChart(title, "Time", "Altitude", dataset, PlotOrientation.VERTICAL, true, true, false);
+        final JFreeChart chart =  ChartFactory.createXYLineChart(title + titleToAppend , "Time", "Altitude", dataset, PlotOrientation.VERTICAL, true, true, false);
         chart.setBackgroundPaint(Color.white);
         final XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.white);

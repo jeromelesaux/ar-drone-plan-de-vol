@@ -1,6 +1,9 @@
 package fr.jeromelesaux.app.ardrone.csv;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by jlesaux on 04/03/15.
@@ -56,5 +59,31 @@ public class CsvElementValue implements Serializable {
 
     public void setRowIndex(Integer rowIndex) {
         this.rowIndex = rowIndex;
+    }
+
+    public Integer getIntegerValue() {
+        return Integer.valueOf(value);
+    }
+    public Float getFloatValue() {
+        return Float.valueOf(value);
+    }
+
+    public Double getDoubleValue() {
+        return Double.valueOf(value);
+    }
+
+    public Date getDateValue(String format)
+            throws ParseException {
+        if (format != null) {
+            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+            return simpleDateFormat.parse(value);
+        }else {
+            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+            return simpleDateFormat.parse(value);
+        }
+    }
+
+    public Boolean getBooleanValue() {
+        return Boolean.parseBoolean(value);
     }
 }
