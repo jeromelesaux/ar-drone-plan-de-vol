@@ -35,7 +35,8 @@ public class Main {
         }
         else {
             LOG.error("No input csv file ");
-            Runtime.getRuntime().exit(-1);
+            //Runtime.getRuntime().exit(-1);
+            return;
         }
 
         final CsvElementCollection collection = reader.getCollection();
@@ -69,7 +70,7 @@ public class Main {
             LOG.error("Cannot parse date format.");
         }
 
-        Runtime.getRuntime().exit(0);
+        //Runtime.getRuntime().exit(0);
 
     }
 }
