@@ -3,7 +3,6 @@ package fr.jeromelesaux.app.ardrone.graphic;
 import fr.jeromelesaux.app.ardrone.compute.ColumnConstants;
 import fr.jeromelesaux.app.ardrone.csv.CsvElementCollection;
 import fr.jeromelesaux.app.ardrone.csv.CsvElementValue;
-import org.apache.log4j.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -24,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 /**
@@ -34,7 +34,7 @@ public class Graphic {
     private static final Logger LOG = Logger.getLogger(Graphic.class.getName());
     public static void generateGraph(CsvElementCollection collection, String graphFilepath, String titleToAppend)
             throws IOException, ParseException {
-        LOG.trace("Generate graphic");
+        LOG.info("Generate graphic");
         Calendar flyDate;
         String title = "Ar drone vol fly ";
         final XYSeries altitudeSeries = new XYSeries(ColumnConstants.ALTITUDE_METER);
@@ -47,7 +47,7 @@ public class Graphic {
             final Double minutes = Double.valueOf(times[0]);
             final Double seconds = Double.valueOf(times[1]) + (minutes*60);
 
-            LOG.trace("Time : " + seconds);
+            LOG.info("Time : " + seconds);
             altitudeSeries.add(seconds,Double.valueOf(altitudeElements.get(timeElement.getRowIndex()).getValue()));
             speedSeries.add(seconds,Double.valueOf(speedElements.get(timeElement.getRowIndex()).getValue()));
         }
@@ -104,7 +104,7 @@ public class Graphic {
         renderer2.setSeriesPaint(0, Color.yellow.brighter());
         plot.setRenderer(1, renderer2);
 
-        LOG.trace("Save into file " + graphFilepath);
+        LOG.info("Save into file " + graphFilepath);
         ChartUtilities.saveChartAsPNG(new File(graphFilepath),chart,1200,800);
 
     }

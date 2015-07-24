@@ -1,9 +1,8 @@
 package fr.jeromelesaux.app.ardrone.csv;
 
-import org.apache.log4j.Logger;
-
 import java.io.*;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by jlesaux on 05/03/15.
@@ -11,7 +10,7 @@ import java.util.List;
  */
 public class CsvFileWriter {
 
-    private static final Logger LOG = Logger.getLogger(CsvFileWriter.class);
+    private static final Logger LOG = Logger.getLogger(CsvFileWriter.class.getName());
     private static CsvFileWriter writer ;
     public static String filepathout;
 

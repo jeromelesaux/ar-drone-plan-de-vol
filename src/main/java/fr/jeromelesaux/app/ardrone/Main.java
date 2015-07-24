@@ -6,13 +6,13 @@ import fr.jeromelesaux.app.ardrone.csv.CsvElementCollection;
 import fr.jeromelesaux.app.ardrone.csv.CsvElementValue;
 import fr.jeromelesaux.app.ardrone.csv.CsvFileReader;
 import fr.jeromelesaux.app.ardrone.graphic.Graphic;
-import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by jlesaux on 15/07/15.
@@ -32,12 +32,12 @@ public class Main {
                 reader.setSeparator(",");
                 reader.readFile(filepath);
             } catch (Exception e) {
-                LOG.error("Can't read or open file " + filepath);
+                LOG.severe("Can't read or open file " + filepath);
             }
         }
         else {
-            LOG.error("No input csv file ");
-            Runtime.getRuntime().exit(-1);
+            LOG.severe("No input csv file ");
+            return;
         }
 
         final CsvElementCollection collection = reader.getCollection();
@@ -66,7 +66,7 @@ public class Main {
         try {
             distance = Compute.computeDistance(collection);
         } catch (ParseException e) {
-            LOG.error(e.getMessage());
+            LOG.severe(e.getMessage());
         }
 
         try {
@@ -78,12 +78,12 @@ public class Main {
             }
             Graphic.generateGraph(collection, graphicFilepath, titleToAppend);
         } catch (IOException e) {
-            LOG.error("Can't generate grahic.");
+            LOG.severe("Can't generate grahic.");
         } catch (ParseException e) {
-            LOG.error("Cannot parse date format.");
+            LOG.severe("Cannot parse date format.");
         }
 
-        Runtime.getRuntime().exit(0);
+        return;
 
     }
 }

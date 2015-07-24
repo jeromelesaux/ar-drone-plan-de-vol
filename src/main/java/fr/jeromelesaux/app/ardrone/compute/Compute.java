@@ -3,11 +3,11 @@ package fr.jeromelesaux.app.ardrone.compute;
 import fr.jeromelesaux.app.ardrone.csv.CsvElement;
 import fr.jeromelesaux.app.ardrone.csv.CsvElementCollection;
 import fr.jeromelesaux.app.ardrone.csv.CsvElementValue;
-import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by jlesaux on 15/07/15.
@@ -20,7 +20,7 @@ public class Compute {
         final Float altitude = altitudeElement.getFloatValue();
 
         CsvElementValue value = new CsvElementValue(new CsvElement(ColumnConstants.ALTITUDE_METER,8),String.valueOf(altitude/1000));
-        LOG.trace("Compute altitude for " + altitude  + " : " + value.getValue());
+        LOG.info("Compute altitude for " + altitude  + " : " + value.getValue());
         return value;
     }
     public static CsvElementValue computeSpeed(CsvElementValue xSpeed, CsvElementValue ySpeed, CsvElementValue zSpeed) {
@@ -29,7 +29,7 @@ public class Compute {
         final Float z = zSpeed.getFloatValue();
         final double speed = Math.pow((Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)), 0.5)/1000;
         CsvElementValue value = new CsvElementValue(new CsvElement(ColumnConstants.SPEED,9),String.valueOf(speed));
-        LOG.trace("Compute speed " + value);
+        LOG.info("Compute speed " + value);
         return value;
     }
 
@@ -57,7 +57,7 @@ public class Compute {
                 speedTmp.clear();
             }
 
-            LOG.trace("distance : " + distance);
+            LOG.info("distance : " + distance);
 
         }
 

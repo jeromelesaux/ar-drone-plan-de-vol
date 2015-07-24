@@ -1,13 +1,12 @@
 package fr.jeromelesaux.app.ardrone.csv;
 
-import org.apache.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 
 
 /**
@@ -27,7 +26,7 @@ public class CsvFileReader {
     }
 
     public static CsvFileReader newInstance() {
-        LOG.trace("newInstance constructor call.");
+        LOG.info("newInstance constructor call.");
         if (csvFileReader == null) {
             csvFileReader = new CsvFileReader();
         }
@@ -59,7 +58,7 @@ public class CsvFileReader {
         // lecture des entetes
         line = buffer.readLine();
         if (line == null) {
-            LOG.error("Pas d'entetes dans le fichier csv.");
+            LOG.severe("Pas d'entetes dans le fichier csv.");
             return collection;
         }
         String[] splitResults = line.split(collection.separator);
@@ -81,7 +80,7 @@ public class CsvFileReader {
             for (String value : splitResults) {
 
                 CsvElementValue elementValue = new CsvElementValue(collection.getColumnAtPosition(position),value,linePosition);
-                LOG.trace("Found at position : " + position + " line number : " + linePosition + " value : " + elementValue.getValue());
+                LOG.info("Found at position : " + position + " line number : " + linePosition + " value : " + elementValue.getValue());
                 collection.setValuesForElement(collection.getColumnAtPosition(position),elementValue);
                 position++;
             }
