@@ -7,11 +7,13 @@ import fr.jeromelesaux.app.ardrone.csv.CsvElementValue;
 import fr.jeromelesaux.app.ardrone.csv.CsvFileReader;
 import fr.jeromelesaux.app.ardrone.graphic.Graphic;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.List;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
@@ -19,12 +21,13 @@ import java.util.logging.Logger;
  * File ${FILE}
  */
 public class Main {
+    private static final LogManager LOG_MANAGER = LogManager.getLogManager();
     private static final Logger LOG = Logger.getLogger(Main.class.getName());
     private static AppVersion mavenVersion = new AppVersion();
     private static final CsvFileReader reader = CsvFileReader.newInstance();
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        LOG_MANAGER.readConfiguration(new FileInputStream(Main.class.getResource("/log.properties").getPath()));
         LOG.info("Version : " + mavenVersion.getVersion());
         final String filepath = args[0];
         if (filepath != null) {

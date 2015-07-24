@@ -34,7 +34,7 @@ public class Graphic {
     private static final Logger LOG = Logger.getLogger(Graphic.class.getName());
     public static void generateGraph(CsvElementCollection collection, String graphFilepath, String titleToAppend)
             throws IOException, ParseException {
-        LOG.info("Generate graphic");
+        LOG.warning("Generate graphic");
         Calendar flyDate;
         String title = "Ar drone vol fly ";
         final XYSeries altitudeSeries = new XYSeries(ColumnConstants.ALTITUDE_METER);
@@ -104,7 +104,7 @@ public class Graphic {
         renderer2.setSeriesPaint(0, Color.yellow.brighter());
         plot.setRenderer(1, renderer2);
 
-        LOG.info("Save into file " + graphFilepath);
+        LOG.warning("Save into file " + graphFilepath);
         ChartUtilities.saveChartAsPNG(new File(graphFilepath),chart,1200,800);
 
     }

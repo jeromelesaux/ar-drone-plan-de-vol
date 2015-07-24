@@ -41,7 +41,7 @@ public class CsvFileReader {
     public static CsvElementCollection readFile(String filepath) throws Exception {
 
 
-        LOG.info("readFile with filepath : " + filepath);
+        LOG.warning("readFile with filepath : " + filepath);
         CsvFileReader.filepath = filepath;
 
         Path path = Paths.get((new File(filepath)).toURI());
@@ -72,7 +72,7 @@ public class CsvFileReader {
 
 
         // lecture des valeurs
-        LOG.info("read the values");
+        LOG.warning("read the values");
         while ((line = buffer.readLine()) != null) {
             splitResults = line.split(collection.separator);
             position=0;
@@ -87,7 +87,7 @@ public class CsvFileReader {
             linePosition++;
         }
         buffer.close();
-        LOG.info("summarize number of headers : " + collection.getValues().size() + " and number of lines : " + linePosition);
+        LOG.warning("summarize number of headers : " + collection.getValues().size() + " and number of lines : " + linePosition);
         return collection;
     }
 

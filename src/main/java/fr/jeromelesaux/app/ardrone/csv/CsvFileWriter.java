@@ -27,7 +27,7 @@ public class CsvFileWriter {
     }
 
     public static void writeFile(String filepath, CsvElementCollection collection) throws IOException {
-        LOG.info("writeFile with filepath : " + filepath);
+        LOG.warning("writeFile with filepath : " + filepath);
         File file = new File(filepath.replaceAll("\\.csv$","-results.csv"));
 
         filepathout = file.getAbsolutePath();
