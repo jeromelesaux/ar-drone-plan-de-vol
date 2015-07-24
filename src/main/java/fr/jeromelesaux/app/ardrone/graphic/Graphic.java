@@ -94,7 +94,7 @@ public class Graphic {
         plot.setDataset(1, new XYSeriesCollection(speedSeries));
         plot.mapDatasetToRangeAxis(1, 1);
         final XYLineAndShapeRenderer renderer =new XYLineAndShapeRenderer();
-        renderer.setSeriesPaint(0, Color.orange);
+        renderer.setSeriesPaint(0, Color.red);
         renderer.setSeriesLinesVisible(0, true);
         renderer.setSeriesShapesVisible(1, true);
         plot.setRenderer(0, renderer);
