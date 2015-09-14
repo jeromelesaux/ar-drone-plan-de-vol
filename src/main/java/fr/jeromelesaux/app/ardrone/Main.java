@@ -7,7 +7,6 @@ import fr.jeromelesaux.app.ardrone.csv.CsvElementValue;
 import fr.jeromelesaux.app.ardrone.csv.CsvFileReader;
 import fr.jeromelesaux.app.ardrone.graphic.Graphic;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -27,7 +26,7 @@ public class Main {
     private static final CsvFileReader reader = CsvFileReader.newInstance();
 
     public static void main(String[] args) throws IOException {
-        LOG_MANAGER.readConfiguration(new FileInputStream(Main.class.getResource("/log.properties").getPath()));
+        LOG_MANAGER.readConfiguration(Main.class.getResourceAsStream("/log.properties"));
         LOG.info("Version : " + mavenVersion.getVersion());
         final String filepath = args[0];
         if (filepath != null) {
